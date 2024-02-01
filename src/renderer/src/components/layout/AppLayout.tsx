@@ -4,7 +4,8 @@ import {
   NotePreviewList,
   RootLayout,
   Sidebar,
-  MarkdownEditor
+  MarkdownEditor,
+  FloatingNoteTitle
 } from '@/components';
 
 export const AppLayout = () => {
@@ -16,6 +17,7 @@ export const AppLayout = () => {
       </Sidebar>
 
       <NoteContent className="border-l bg-zinc-900/50 border-l-white/20">
+        <FloatingNoteTitle className="pt-2" />
         <MarkdownEditor />
       </NoteContent>
     </RootLayout>
