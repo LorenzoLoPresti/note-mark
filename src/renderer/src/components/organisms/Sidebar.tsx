@@ -1,10 +1,8 @@
-import { ComponentProps, FC } from 'react';
+import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { ButtonsRow } from '@/components';
 
-type SidebarProps = ComponentProps<'aside'>;
-
-const Sidebar: FC<SidebarProps> = ({ children, ...attr }) => {
-  const { className } = attr;
+export const Sidebar = ({ children, className, ...attr }: ComponentProps<'aside'>) => {
   const classNames = twMerge('w-[250px] mt-10 h-[100vh - 10px] overflow-auto', className);
 
   return (
@@ -13,5 +11,3 @@ const Sidebar: FC<SidebarProps> = ({ children, ...attr }) => {
     </aside>
   );
 };
-
-export default Sidebar;
