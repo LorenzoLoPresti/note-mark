@@ -1,7 +1,7 @@
 import { ComponentProps, FC, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const NoteContent = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
+export const NoteContent = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
   ({ children, className, ...attr }, ref) => {
     const classNames = twMerge('flex-1 overflow-auto', className);
 
@@ -13,5 +13,3 @@ const NoteContent = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
   }
 );
 NoteContent.displayName = 'Content';
-
-export default NoteContent;

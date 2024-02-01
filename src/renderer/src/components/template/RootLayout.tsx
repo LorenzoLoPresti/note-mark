@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const RootLayout = ({ children, className, ...attr }: ComponentProps<'main'>) => {
+export const RootLayout = ({ children, className, ...attr }: ComponentProps<'main'>) => {
   const classNames = twMerge('flex flex-row h-screen', className);
 
   return (
@@ -10,5 +10,3 @@ const RootLayout = ({ children, className, ...attr }: ComponentProps<'main'>) =>
     </main>
   );
 };
-
-export default RootLayout;
