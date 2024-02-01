@@ -7,7 +7,7 @@ export const NoteContent = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
 
     return (
       <div ref={ref} className={classNames} {...attr}>
-        NoteContent
+        {children}
       </div>
     );
   }
