@@ -1,5 +1,4 @@
-import MacDraggableTopBar from './components/MacDraggableTopBar';
-import AppLayout from './components/layout/AppLayout';
+import { MacDraggableTopBar, AppLayout } from '@/components';
 
 const App = () => {
   return (

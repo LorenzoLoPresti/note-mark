@@ -21,7 +21,7 @@ const styles: Record<ButtonTypes, string> = {
   deleteNote: 'hover:bg-red-600/50'
 };
 
-const Button = ({ variant = 'action', children, className, ...attr }: ButtonProps) => {
+export const Button = ({ variant = 'action', children, className, ...attr }: ButtonProps) => {
   const classNames = twMerge(generalStyle, styles[variant], className);
 
   return (
@@ -32,5 +32,3 @@ const Button = ({ variant = 'action', children, className, ...attr }: ButtonProp
     </button>
   );
 };
-
-export default Button;

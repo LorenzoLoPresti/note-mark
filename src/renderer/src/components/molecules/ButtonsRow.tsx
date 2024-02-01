@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
-import Button from '../atoms/Button';
+import { Button } from '@/components';
 
-const ButtonsRow = ({ ...attr }: ComponentProps<'div'>) => {
+export const ButtonsRow = ({ ...attr }: ComponentProps<'div'>) => {
   return (
     <div {...attr}>
       <Button variant="newNote" />
@@ -9,5 +9,3 @@ const ButtonsRow = ({ ...attr }: ComponentProps<'div'>) => {
     </div>
   );
 };
-
-export default ButtonsRow;
