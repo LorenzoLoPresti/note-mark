@@ -2,7 +2,7 @@ import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 // TS da errore perchè non sa il tipo di context
-const dateFormatter = new Intl.DateTimeFormat(window.context.locale, {
+const dateFormatter = new Intl.DateTimeFormat(window.context?.locale || 'it-IT', {
   dateStyle: 'short',
   timeStyle: 'short'
 });
