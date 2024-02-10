@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import { NoteInfo } from '@shared/models';
+import { NoteContent, NoteInfo } from '@shared/models';
 import { notesMock } from '@/store/moks';
 import { unwrap } from 'jotai/utils';
 
@@ -42,6 +42,31 @@ export const selectedNoteAtom = unwrap(
       lastEditTime: Date.now()
     }
 );
+
+export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent) => {
+  const notes = get(notesAtom);
+  const selectedNote = get(selectedNoteAtom);
+
+  if (!selectedNote || !notes) return;
+
+  // save on disk
+  await window.context.writeNote(selectedNote.title, newContent);
+
+  // Update the saved note's last edit time
+  set(
+    notesAtom,
+    notes.map((note) => {
+      if (note.title === selectedNote.title) {
+        return {
+          ...note,
+          lastEditTime: Date.now()
+        };
+      }
+
+      return note;
+    })
+  );
+});
 
 export const createEmptyNoteAtom = atom(null, (get, set) => {
   const notes = get(notesAtom);

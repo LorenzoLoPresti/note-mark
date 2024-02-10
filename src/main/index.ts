@@ -2,8 +2,8 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
-import { readNote, getNotes } from '@/lib';
-import { GetNotes, ReadNote } from '@shared/types';
+import { readNote, getNotes, writeNote } from '@/lib';
+import { GetNotes, ReadNote, WriteNote } from '@shared/types';
 
 interface MacOptions {
   trafficLightPosition?: Electron.Point | undefined;
@@ -98,6 +98,7 @@ app.whenReady().then(() => {
   // Min 2.04.022 chiedere (vedi p2 in preload/index.ts)
   ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args));
   ipcMain.handle('readNote', (_, title: string) => readNote(title));
+  ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args));
 
   createWindow();
 

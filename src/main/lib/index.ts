@@ -1,6 +1,6 @@
 import { homedir } from 'os';
 import { appDirectoryName, fileEncoding } from '../../shared/constants';
-import { ensureDir, readdir, stat, readFile } from 'fs-extra';
+import { ensureDir, readdir, stat, readFile, writeFile } from 'fs-extra';
 import { NoteInfo } from '../../shared/models';
 import { GetNotes, ReadNote } from '../../shared/types';
 
@@ -36,4 +36,11 @@ export const readNote: ReadNote = async (filename: string) => {
   const filePath = `${rootDir}/${filename}.md`.replace(/\//g, '\\');
 
   return readFile(filePath, { encoding: fileEncoding });
+};
+
+export const writeNote = async (filename, content) => {
+  const rootDir = getRootDir();
+  const noteContent = `${rootDir}/${filename}.md`.replace(/\//g, '\\');
+
+  return writeFile(noteContent, content, { encoding: fileEncoding });
 };
