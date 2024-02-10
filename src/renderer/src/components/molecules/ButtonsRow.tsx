@@ -11,8 +11,8 @@ export const ButtonsRow = ({ ...attr }: ComponentProps<'div'>) => {
     await createEmptyNote();
   };
 
-  const handleDelete = () => {
-    deleteNote();
+  const handleDelete = async () => {
+    await deleteNote();
   };
 
   return (
