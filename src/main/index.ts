@@ -29,8 +29,8 @@ interface MacOptions {
 }
 
 const windowsStyleOptions = {
-  opacity: 0.93,
-  backgroundColor: 'rgba(20,50,80, 0.8)'
+  opacity: 0.94,
+  backgroundColor: 'rgb(20,50,80)'
 };
 
 const macStyleOptions: MacOptions = {
@@ -48,7 +48,9 @@ function createWindow(): void {
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
-    ...(process.platform === 'win32' ? windowsStyleOptions : macStyleOptions),
+    ...(process.platform === 'win32'
+      ? { ...windowsStyleOptions, backgroundMaterial: 'acrylic' }
+      : macStyleOptions),
     center: true,
     title: 'NoteMark',
     frame: true,
