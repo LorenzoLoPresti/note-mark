@@ -1,6 +1,7 @@
 // import { electronAPI } from '@electron-toolkit/preload'
 
-import { contextBridge } from 'electron';
+import { CreateNote, DeleteNote, GetNotes, ReadNote, WriteNote } from '@shared/types';
+import { contextBridge, ipcRenderer } from 'electron';
 
 // // Custom APIs for renderer
 // const api = {}
@@ -28,7 +29,13 @@ if (!process.contextIsolated) {
 
 try {
   contextBridge.exposeInMainWorld('context', {
-    locale: navigator.language
+    locale: navigator.language,
+    // p2
+    getNotes: (...args: Parameters<GetNotes>) => ipcRenderer.invoke('getNotes', ...args),
+    readNote: (...args: Parameters<ReadNote>) => ipcRenderer.invoke('readNote', ...args),
+    writeNote: (...args: Parameters<WriteNote>) => ipcRenderer.invoke('writeNote', ...args),
+    createNote: (...args: Parameters<CreateNote>) => ipcRenderer.invoke('createNote', ...args),
+    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args)
   });
 } catch (error) {
   console.error(error);
