@@ -7,8 +7,8 @@ export const ButtonsRow = ({ ...attr }: ComponentProps<'div'>) => {
   const createEmptyNote = useSetAtom(createEmptyNoteAtom);
   const deleteNote = useSetAtom(deleteNoteAtom);
 
-  const handleCreation = () => {
-    createEmptyNote();
+  const handleCreation = async () => {
+    await createEmptyNote();
   };
 
   const handleDelete = () => {
