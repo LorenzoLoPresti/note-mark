@@ -2,6 +2,8 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
+import { readNote, getNotes, writeNote, createNote, deleteNote } from '@/lib';
+import { CreateNote, DeleteNote, GetNotes, WriteNote } from '@shared/types';
 
 interface MacOptions {
   trafficLightPosition?: Electron.Point | undefined;
@@ -27,8 +29,8 @@ interface MacOptions {
 }
 
 const windowsStyleOptions = {
-  opacity: 0.93,
-  backgroundColor: 'rgba(20,50,80, 0.8)'
+  opacity: 0.94,
+  backgroundColor: 'rgb(20,50,80)'
 };
 
 const macStyleOptions: MacOptions = {
@@ -46,7 +48,9 @@ function createWindow(): void {
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
-    ...(process.platform === 'win32' ? windowsStyleOptions : macStyleOptions),
+    ...(process.platform === 'win32'
+      ? { ...windowsStyleOptions, backgroundMaterial: 'acrylic' }
+      : macStyleOptions),
     center: true,
     title: 'NoteMark',
     frame: true,
@@ -92,6 +96,13 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'));
+
+  // Min 2.04.022 chiedere (vedi p2 in preload/index.ts)
+  ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args));
+  ipcMain.handle('readNote', (_, title: string) => readNote(title));
+  ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args));
+  ipcMain.handle('createNote', (_, ...args: Parameters<CreateNote>) => createNote(...args));
+  ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args));
 
   createWindow();
 
