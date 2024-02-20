@@ -1,8 +1,6 @@
-# NoteMark
+# NoteMark (Windows)
 
-A minimal Note taking app with out-of-the-box markdown support.
-
-![Preview](https://github.com/LorenzoLoPresti/NoteMark/assets/0000.png)
+Un semplice editor di testo per creare e modificare note. Applicazione desktop per windows
 
 ## Project Setup
 
